@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск квартиры</title>
+    <style>
+        /* Настройки фона и стилизации, аналогичные теме Telegram */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e5e5ea; /* Цвет, похожий на фон в Telegram */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .apartment {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Найти квартиру</h1>
+    <div class="form-group">
+        <label for="city">Выберите город:</label>
+        <select id="city">
+            <option value="moscow">Москва</option>
+            <option value="spb">Санкт-Петербург</option>
+            <option value="kazan">Казань</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="street">Выберите улицу:</label>
+        <select id="street">
+            <option value="main">Главная улица</option>
+            <option value="center">Центральная улица</option>
+            <option value="park">Парковая улица</option>
+        </select>
+    </div>
+    <button onclick="searchApartments()">Найти</button>
+    
+    <!-- Контейнер для отображения найденных квартир -->
+    <div class="results" id="results"></div>
+</div>
+
+<script>
+    // Функция для эмуляции поиска квартир
+    function searchApartments() {
+        const city = document.getElementById("city").value;
+        const street = document.getElementById("street").value;
+        const results = document.getElementById("results");
+
+        // Очистка старых результатов
+        results.innerHTML = "";
+
+        // Массив с фейковыми данными для квартир
+        const apartments = [
+            { title: "Квартира 1", description: "2 комнаты, 50 кв.м.", price: "50,000 руб." },
+            { title: "Квартира 2", description: "1 комната, 30 кв.м.", price: "30,000 руб." },
+            { title: "Квартира 3", description: "3 комнаты, 70 кв.м.", price: "70,000 руб." }
+        ];
+
+        // Создание карточек с результатами квартир
+        apartments.forEach(apartment => {
+            const apartmentDiv = document.createElement("div");
+            apartmentDiv.classList.add("apartment");
+            apartmentDiv.innerHTML = `
+                <h3>${apartment.title}</h3>
+                <p>${apartment.description}</p>
+                <p><strong>Цена: ${apartment.price}</strong></p>
+            `;
+            results.appendChild(apartmentDiv);
+        });
+    }
+</script>
+
+</body>
+</html>
+	
